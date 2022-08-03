@@ -5,8 +5,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Wifi Sensor"
-Date "2022-08-02"
-Rev "Rev. A"
+Date "2022-08-03"
+Rev "Rev. B"
 Comp "Pawel Warzecha"
 Comment1 ""
 Comment2 ""
@@ -87,17 +87,6 @@ Wire Wire Line
 	4350 3150 4350 3050
 Wire Wire Line
 	4350 3050 4450 3050
-$Comp
-L Regulator_Linear:LD1117S33TR_SOT223 U2
-U 1 1 62E84AC9
-P 2300 1000
-F 0 "U2" H 2300 1242 50  0000 C CNN
-F 1 "LD1117S33TR_SOT223" H 2300 1151 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 2300 1200 50  0001 C CNN
-F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/CD00000544.pdf" H 2400 750 50  0001 C CNN
-	1    2300 1000
-	1    0    0    -1  
-$EndComp
 $Comp
 L Connector_Generic:Conn_01x04 J1
 U 1 1 62E863A8
@@ -637,6 +626,17 @@ F 1 "BME280" H 1600 4800 50  0000 R CNN
 F 2 "Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering" H 1200 5050 50  0001 C CNN
 F 3 "https://ae-bst.resource.bosch.com/media/_tech/media/datasheets/BST-BME280_DS001-11.pdf" H 1200 5050 50  0001 C CNN
 	1    1200 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_Linear:LT1129-3.3_SOT223 U2
+U 1 1 62F9462A
+P 2300 1000
+F 0 "U2" H 2300 1242 50  0000 C CNN
+F 1 "LT1129-3.3_SOT223" H 2300 1151 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 2300 1225 50  0001 C CIN
+F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/112935ff.pdf" H 2300 950 50  0001 C CNN
+	1    2300 1000
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
