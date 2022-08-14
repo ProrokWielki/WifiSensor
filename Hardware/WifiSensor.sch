@@ -5,8 +5,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Wifi Sensor"
-Date "2022-08-03"
-Rev "Rev. B"
+Date "2022-08-14"
+Rev "Rev. C"
 Comp "Pawel Warzecha"
 Comment1 ""
 Comment2 ""
@@ -236,9 +236,9 @@ Wire Notes Line
 	650  4000 5050 4000
 Wire Notes Line
 	5050 1850 650  1850
-Text GLabel 1500 3050 0    50   Input ~ 0
+Text GLabel 1850 3050 0    50   Input ~ 0
 SCL
-Text GLabel 1500 3150 0    50   Input ~ 0
+Text GLabel 1850 3150 0    50   Input ~ 0
 SDA
 Wire Wire Line
 	1400 2650 1400 2750
@@ -276,9 +276,9 @@ F 3 "~" H 3850 2150 50  0001 C CNN
 	1    3850 2150
 	0    -1   -1   0   
 $EndComp
-Text Label 1500 3050 0    50   ~ 0
+Text Label 1850 3050 0    50   ~ 0
 SCL
-Text Label 1500 3150 0    50   ~ 0
+Text Label 1850 3150 0    50   ~ 0
 SDA
 Text Notes 650  4000 0    50   ~ 0
 ESP
@@ -296,9 +296,9 @@ Wire Wire Line
 Wire Wire Line
 	1700 3400 1700 3450
 Wire Wire Line
-	1500 3150 1900 3150
+	1850 3150 1900 3150
 Wire Wire Line
-	1500 3050 1900 3050
+	1850 3050 1900 3050
 Wire Wire Line
 	1700 2750 1900 2750
 Wire Wire Line
@@ -324,7 +324,7 @@ F 3 "" H 1700 2350 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1450 2550 1900 2550
+	1450 2550 1550 2550
 Wire Wire Line
 	1450 2550 1300 2550
 Connection ~ 1450 2550
@@ -639,4 +639,28 @@ F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/112935f
 	1    2300 1000
 	1    0    0    -1  
 $EndComp
+$Comp
+L Connector_Generic:Conn_01x02 JP2
+U 1 1 62F97B0A
+P 1100 3200
+F 0 "JP2" H 1100 3464 50  0000 C CNN
+F 1 "DeepSleepEnable" H 1100 3373 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 1100 3200 50  0001 C CNN
+F 3 "" H 1100 3200 50  0000 C CNN
+	1    1100 3200
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1300 3200 1600 3200
+Wire Wire Line
+	1900 2850 1600 2850
+Wire Wire Line
+	1600 2850 1600 3200
+Wire Wire Line
+	1300 3100 1550 3100
+Wire Wire Line
+	1550 3100 1550 2550
+Connection ~ 1550 2550
+Wire Wire Line
+	1550 2550 1900 2550
 $EndSCHEMATC
