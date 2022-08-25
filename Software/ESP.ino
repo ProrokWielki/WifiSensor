@@ -19,8 +19,8 @@
 
 #define get_name(var) #var
 
-BME280I2C::Settings settings(BME280::OSR_X1, BME280::OSR_X1, BME280::OSR_X1, BME280::Mode_Forced, BME280::StandbyTime_1000ms, BME280::Filter_Off,
-                             BME280::SpiEnable_False, BME280I2C::I2CAddr::I2CAddr_0x76);
+BME280I2C::Settings settings(BME280::OSR_X1, BME280::OSR_X1, BME280::OSR_X1, BME280::Mode_Normal, BME280::StandbyTime_1000ms, BME280::Filter_Off,
+                             BME280::SpiEnable_False, BME280I2C::I2CAddr::I2CAddr_0x77);
 BME280I2C bme_(settings);
 WiFiClient wifi_;
 PubSubClient mqtt_(mqtt::server_ip, mqtt::server_port, wifi_);
@@ -33,11 +33,14 @@ void setup()
     WiFi.begin(wifi::ssid, wifi::password);
 
     wait_for_initialization([]() { return not WiFi.status() == WL_CONNECTED; }, 5, []() { ESP.deepSleep(15 * 60 * 1000 * 1000); });
-    wait_for_initialization([]() { return not bme_.begin(); }, 5, []() { ESP.deepSleep(15 * 60 * 1000 * 1000); }),
+    wait_for_initialization([]() { return not bme_.begin(); }, 5, []() { ESP.deepSleep(15 * 60 * 1000 * 1000); });
     wait_for_initialization([]() { return not mqtt_.connect(mqtt::client_id); }, 5, []() { ESP.deepSleep(15 * 60 * 1000 * 1000); });
 
-    mqtt_.publish(wifi::hostname, make_json(std::make_pair("name", wifi::hostname), std::make_pair("temperature", bme_.temp(BME280::TempUnit_Celsius)),
-                                            std::make_pair("humidity", bme_.hum()), std::make_pair("pressure", bme_.pres(BME280::PresUnit_hPa)))
+    float pressure, temperature, humidity;
+    bme_.read(pressure, temperature, humidity);
+
+    mqtt_.publish(wifi::hostname, make_json(std::make_pair("name", wifi::hostname), std::make_pair("temperature", temperature),
+                                            std::make_pair("humidity", humidity), std::make_pair("pressure", pressure))
                                   .c_str());
 
     delay(1000);
