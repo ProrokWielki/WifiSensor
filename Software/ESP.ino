@@ -6,7 +6,6 @@
 
 #include <ArduinoOTA.h>
 #include <PubSubClient.h>
-#include <RemoteDebug.h>
 
 #include <BME280I2C.h>
 
@@ -30,11 +29,12 @@ void setup()
     Wire.begin(i2c::sda_pin, i2c::scl_pin);
 
     WiFi.hostname(wifi::hostname);
+    WiFi.mode(WIFI_STA);
     WiFi.begin(wifi::ssid, wifi::password);
 
-    wait_for_initialization([]() { return not WiFi.status() == WL_CONNECTED; }, 5, []() { ESP.deepSleep(15 * 60 * 1000 * 1000); });
+    wait_for_initialization([]() { return not(WiFi.status() == WL_CONNECTED); }, 5, []() { ESP.deepSleep(15 * 60 * 1000 * 1000); }, 5000);
     wait_for_initialization([]() { return not bme_.begin(); }, 5, []() { ESP.deepSleep(15 * 60 * 1000 * 1000); });
-    wait_for_initialization([]() { return not mqtt_.connect(mqtt::client_id); }, 5, []() { ESP.deepSleep(15 * 60 * 1000 * 1000); });
+    wait_for_initialization([]() { return not(mqtt_.connect(mqtt::client_id)); }, 5, []() { ESP.deepSleep(15 * 60 * 1000 * 1000); });
 
     float pressure, temperature, humidity;
     bme_.read(pressure, temperature, humidity);
